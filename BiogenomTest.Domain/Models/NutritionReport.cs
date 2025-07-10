@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace BiogenomTest.Domain.Models;
 
 /// <summary>
-/// представляет индивидуальный отчет о качестве питания
+/// представляет отчет о качестве питания
 /// </summary>
 public class NutritionReport
 {
@@ -24,7 +24,18 @@ public class NutritionReport
 
     public List<Advantage> Advantages { get; private set; } = [];
 
+    public static (NutritionReport Report, string Error) Create(DateTime creationDate)
+    {
+        var error = string.Empty;
 
+        if (creationDate > DateTime.UtcNow)
+        {
+            error = "Дата создания отчета не может быть в будущем.";
+        }
+
+        var report = new NutritionReport(creationDate);
+        return (report, string.Empty);
+    }
 
     public void AddNutrient(Nutrient nutrient)
     {
