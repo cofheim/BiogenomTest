@@ -12,4 +12,8 @@
     <Folder Include="Services\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BiogenomTest.Domain\BiogenomTest.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
