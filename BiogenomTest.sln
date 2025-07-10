@@ -5,6 +5,12 @@ VisualStudioVersion = 17.13.35931.197 d17.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BiogenomTest", "BiogenomTest\BiogenomTest.csproj", "{296D12BE-020F-4C78-81AB-09406AF02DC5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BiogenomTest.Infrastructure", "BiogenomTest.Infrastructure\BiogenomTest.Infrastructure.csproj", "{203EE3D0-AC18-4DD9-A9DB-84C36144C61B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BiogenomTest.Application", "BiogenomTest.Application\BiogenomTest.Application.csproj", "{3BDC5A94-68CC-40F2-A850-6157D7511096}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BiogenomTest.Domain", "BiogenomTest.Domain\BiogenomTest.Domain.csproj", "{58AB1C86-DCE3-4AA2-9069-D7B4022A63AF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +21,18 @@ Global
 		{296D12BE-020F-4C78-81AB-09406AF02DC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{296D12BE-020F-4C78-81AB-09406AF02DC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{296D12BE-020F-4C78-81AB-09406AF02DC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{203EE3D0-AC18-4DD9-A9DB-84C36144C61B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{203EE3D0-AC18-4DD9-A9DB-84C36144C61B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{203EE3D0-AC18-4DD9-A9DB-84C36144C61B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{203EE3D0-AC18-4DD9-A9DB-84C36144C61B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BDC5A94-68CC-40F2-A850-6157D7511096}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BDC5A94-68CC-40F2-A850-6157D7511096}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BDC5A94-68CC-40F2-A850-6157D7511096}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BDC5A94-68CC-40F2-A850-6157D7511096}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58AB1C86-DCE3-4AA2-9069-D7B4022A63AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58AB1C86-DCE3-4AA2-9069-D7B4022A63AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58AB1C86-DCE3-4AA2-9069-D7B4022A63AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58AB1C86-DCE3-4AA2-9069-D7B4022A63AF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
