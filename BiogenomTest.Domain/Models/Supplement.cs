@@ -4,32 +4,26 @@ using System.ComponentModel.DataAnnotations;
 namespace BiogenomTest.Domain.Models;
 
 /// <summary>
-/// Представляет биологически активную добавку (БАД).
+/// представляет БАД
 /// </summary>
 public class Supplement
 {
     private const int MAX_NAME_LENGTH = 150;
     private const int MAX_DESCRIPTION_LENGTH = 500;
-
-    [Key]
-    public int Id { get; private set; }
-
-    public string Name { get; private set; }
-
-    public string Description { get; private set; }
-    
-    public string ImageUrl { get; private set; }
-
-    public List<Nutrient> Nutrients { get; private set; } = [];
-
     private Supplement() { }
-
     private Supplement(string name, string description, string imageUrl)
     {
         Name = name;
         Description = description;
         ImageUrl = imageUrl;
     }
+
+    public int Id { get; }
+    public string Name { get; private set; }
+    public string Description { get; private set; }
+    public string ImageUrl { get; private set; }
+    public List<SupplementNutrient> Nutrients { get; private set; } = [];
+
 
     public static (Supplement Supplement, string Error) Create(string name, string description, string imageUrl)
     {
@@ -47,7 +41,7 @@ public class Supplement
         {
             error = "Некорректный формат URL изображения.";
         }
-        
+
         if (!string.IsNullOrEmpty(error))
         {
             return (null, error);
@@ -57,4 +51,12 @@ public class Supplement
 
         return (supplement, string.Empty);
     }
-} 
+    
+    public void AddNutrient(SupplementNutrient supplementNutrient)
+    {
+        if (supplementNutrient != null)
+        {
+            Nutrients.Add(supplementNutrient);
+        }
+    }
+}

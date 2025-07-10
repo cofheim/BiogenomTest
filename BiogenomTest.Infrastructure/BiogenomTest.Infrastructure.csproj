@@ -20,8 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Repositories\" />
-    <Folder Include="Entities\" />
     <Folder Include="Configurations\" />
   </ItemGroup>
 

@@ -1,38 +1,49 @@
-
-using System.ComponentModel.DataAnnotations;
+using BiogenomTest.Domain.Enums;
 
 namespace BiogenomTest.Domain.Models;
 
 /// <summary>
-/// Представляет нутриент (например, витамин, минерал, вода).
+/// представляет нутриент (например, витамин, минерал, вода)
 /// </summary>
 public class Nutrient
 {
     private const int MAX_NAME_LENGTH = 100;
     private const int MAX_UNIT_LENGTH = 20;
 
-    [Key]
-    public int Id { get; private set; }
-    
-    public string Name { get; private set; }
-
-    public string Unit { get; private set; }
-
-    public double CurrentValue { get; private set; }
-    
-    public double NormalValue { get; private set; }
-
     private Nutrient() { }
-    
-    private Nutrient(string name, string unit, double currentValue, double normalValue)
+
+    private Nutrient(string name, string unit, double currentValue, double minNormalValue, double? maxNormalValue)
     {
         Name = name;
         Unit = unit;
         CurrentValue = currentValue;
-        NormalValue = normalValue;
+        MinNormalValue = minNormalValue;
+        MaxNormalValue = maxNormalValue;
     }
 
-    public static (Nutrient Nutrient, string Error) Create(string name, string unit, double currentValue, double normalValue)
+    public int Id { get; }
+    public string Name { get; private set; }
+    public string Unit { get; private set; }
+    public double CurrentValue { get; private set; }
+    public double MinNormalValue { get; private set; }
+    public double? MaxNormalValue { get; private set; }
+
+    public NutrientStatus Status
+    {
+        get
+        {
+            if (CurrentValue < MinNormalValue)
+                return NutrientStatus.Deficit;
+
+            if (MaxNormalValue.HasValue && CurrentValue > MaxNormalValue.Value)
+                return NutrientStatus.Surplus;
+
+            return NutrientStatus.Normal;
+        }
+    }
+
+
+    public static (Nutrient Nutrient, string Error) Create(string name, string unit, double currentValue, double minNormalValue, double? maxNormalValue = null)
     {
         var error = string.Empty;
 
@@ -44,22 +55,21 @@ public class Nutrient
         {
             error = $"Единица измерения не может быть пустой или длиннее {MAX_UNIT_LENGTH} символов.";
         }
-        else if (currentValue < 0)
+        if (minNormalValue <= 0)
         {
-            error = "Текущее значение не может быть отрицательным.";
+            error = "Минимальное нормальное значение должно быть положительным.";
         }
-        else if (normalValue <= 0)
+        else if (maxNormalValue.HasValue && maxNormalValue.Value < minNormalValue)
         {
-            error = "Нормальное значение должно быть положительным.";
+            error = "Максимальное значение не может быть меньше минимального.";
         }
-        
         if (!string.IsNullOrEmpty(error))
         {
             return (null, error);
         }
 
-        var nutrient = new Nutrient(name, unit, currentValue, normalValue);
-        
+        var nutrient = new Nutrient(name, unit, currentValue, minNormalValue, maxNormalValue);
+
         return (nutrient, string.Empty);
     }
-} 
+}

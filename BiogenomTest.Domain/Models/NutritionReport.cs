@@ -4,28 +4,27 @@ using System.ComponentModel.DataAnnotations;
 namespace BiogenomTest.Domain.Models;
 
 /// <summary>
-/// Представляет индивидуальный отчет о качестве питания.
-/// Является корнем агрегации.
+/// представляет индивидуальный отчет о качестве питания
 /// </summary>
 public class NutritionReport
 {
-    [Key]
-    public int Id { get; private set; }
-    
-    public DateTime CreationDate { get; private set; }
-    
-    public List<Nutrient> CurrentIntake { get; private set; } = [];
-
-    public List<Supplement> RecommendedSupplements { get; private set; } = [];
-    
-    public List<Advantage> Advantages { get; private set; } = [];
-
-    private NutritionReport() { }
-
     private NutritionReport(DateTime creationDate)
     {
         CreationDate = creationDate;
     }
+    private NutritionReport() { }
+
+    public int Id { get;  }
+
+    public DateTime CreationDate { get; private set; } = DateTime.Now;  
+
+    public List<Nutrient> CurrentIntake { get; private set; } = [];
+
+    public List<Supplement> RecommendedSupplements { get; private set; } = [];
+
+    public List<Advantage> Advantages { get; private set; } = [];
+
+
 
     public void AddNutrient(Nutrient nutrient)
     {
@@ -42,7 +41,7 @@ public class NutritionReport
             RecommendedSupplements.Add(supplement);
         }
     }
-    
+
     public void AddAdvantage(Advantage advantage)
     {
         if (advantage != null)
@@ -50,4 +49,4 @@ public class NutritionReport
             Advantages.Add(advantage);
         }
     }
-} 
+}
