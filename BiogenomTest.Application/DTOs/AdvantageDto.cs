@@ -1,3 +1,3 @@
-namespace BiogenomTest.Application.DTOs;
+namespace BiogenomTest.Application.DTOS;
 
 public record AdvantageDto(string Text); 

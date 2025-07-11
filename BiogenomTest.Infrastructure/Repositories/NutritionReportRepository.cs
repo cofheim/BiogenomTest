@@ -1,7 +1,6 @@
+using BiogenomTest.Application.Interfaces;
 using BiogenomTest.Domain.Models;
-using BiogenomTest.Infrastructure.Entities;
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
 
 namespace BiogenomTest.Infrastructure.Repositories;
 

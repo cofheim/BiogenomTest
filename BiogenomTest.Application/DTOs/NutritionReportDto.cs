@@ -1,4 +1,4 @@
-namespace BiogenomTest.Application.DTOs;
+namespace BiogenomTest.Application.DTOS;
 
 public record NutritionReportDto
 {

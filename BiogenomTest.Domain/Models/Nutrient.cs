@@ -1,11 +1,12 @@
 using BiogenomTest.Domain.Enums;
+using System;
 
 namespace BiogenomTest.Domain.Models;
 
 /// <summary>
 /// представляет нутриент (например, витамин, минерал, вода)
 /// </summary>
-public class Nutrient
+public class Nutrient : ICloneable
 {
     private const int MAX_NAME_LENGTH = 100;
     private const int MAX_UNIT_LENGTH = 20;
@@ -40,6 +41,19 @@ public class Nutrient
 
             return NutrientStatus.Normal;
         }
+    }
+
+    public void SetCurrentValue(double newValue)
+    {
+        if (newValue >= 0)
+        {
+            CurrentValue = newValue;
+        }
+    }
+
+    public object Clone()
+    {
+        return MemberwiseClone();
     }
 
 
